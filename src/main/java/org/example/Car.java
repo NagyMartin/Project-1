@@ -1,18 +1,18 @@
 package org.example;
 
 public abstract class Car implements Vehicle {
-    final float fuelTankSize;
-    final int gears;
-    double consumptionPer100Km;
-    final String fuelType;
-    int tireSize;
-    final String chassisNumber;
-    private float availableFuel;
-    float drivingFuelConsumedPer100Km;
-    float averageFuelConsumption;
-    float consumedFuel = 0;
-    int timesCarIsDriven = 0;
-    double gearConsumptionPer100Km;
+    protected float fuelTankSize;
+    protected int gears;
+    protected double consumptionPer100Km;
+    protected final String fuelType;
+    protected int tireSize;
+    protected final String chassisNumber;
+    protected float availableFuel;
+    protected float drivingFuelConsumedPer100Km;
+    protected float averageFuelConsumption;
+    protected float consumedFuel = 0;
+    protected int timesCarIsDriven = 0;
+    protected double gearConsumptionPer100Km;
 
     /**
      *
@@ -51,37 +51,37 @@ public abstract class Car implements Vehicle {
     }
 
     /**
-     *
+     * Fuel Consumption is altered by the parameter value added.
      * @param x is the value added.
      */
-     public void drive(double x) {
-    }
+      public void drive(double x){
+          float drivingFuelConsumedPer100Km = (float) ((x * 0.01) * this.gearConsumptionPer100Km);
+          System.out.println("You have driven for: " + x + " kilometres, the fuel consumed is: " + drivingFuelConsumedPer100Km);
+          this.drivingFuelConsumedPer100Km = drivingFuelConsumedPer100Km;
+          consumedFuel = consumedFuel + drivingFuelConsumedPer100Km;
+          drivingFuelConsumedPer100Km = 0;
+          timesCarIsDriven++;
+      };
 
     /**
      * Method starts the engine and sets the initial fuel consumption based on tyre size.
      */
     public void start() {
         System.out.println("The car engine started.");
-        while (true) {
             switch (tireSize) {
-                case 15 -> {
-                    consumptionPer100Km = 4.7;
-                }
+                case 15 -> consumptionPer100Km = 4.7;
                 case 16, 17, 18, 19 -> {
                     consumptionPer100Km = 4.7;
                     consumptionPer100Km = consumptionPer100Km + (tireSize * 0.1);
                 }
+                default -> System.out.println("Please check the tyre size acceptance range!");
             }
-            break;
-        }
     }
 
     /**
      * Method stops the engine.
      */
-    public void stop() {
-        System.out.println("The car engine stopped.");
-    }
+    public abstract void stop();
 
 
     /**

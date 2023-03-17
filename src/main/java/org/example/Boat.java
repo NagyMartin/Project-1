@@ -3,7 +3,7 @@ package org.example;
 public class Boat implements Vehicle {
 
     public void drive(double x) {
-
+        System.out.println("The boat drove for: " + x + " kilometers.");
     }
 
 

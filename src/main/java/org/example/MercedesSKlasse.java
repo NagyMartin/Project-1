@@ -31,23 +31,7 @@ public class MercedesSKlasse extends Mercedes{
      */
     @Override
     public void stop() {
-        super.stop();
         System.out.println("The Mercedes SKlasse stopped.");
     }
 
-    /**
-     * Method overrides the implemented parent method.
-     * Fuel Consumption is altered by the parameter value added.
-     * @param x is the value added.
-     */
-    @Override
-    public void drive(double x) {
-        super.drive(x);
-        float drivingFuelConsumedPer100Km = (float) ((x * 0.01) * this.gearConsumptionPer100Km);
-        System.out.println("You have driven for: " + x + " kilometres, the fuel consumed is: " + drivingFuelConsumedPer100Km);
-        this.drivingFuelConsumedPer100Km = drivingFuelConsumedPer100Km;
-        consumedFuel = consumedFuel + drivingFuelConsumedPer100Km;
-        drivingFuelConsumedPer100Km = 0;
-        timesCarIsDriven++;
-    }
 }
